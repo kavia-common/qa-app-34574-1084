@@ -23,14 +23,14 @@ from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
+    path('api/', include(('api.urls', 'api'), namespace='api')),
 ]
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="My API",
+      title="Q&A App REST API",
       default_version='v1',
-      description="Test description",
+      description="RESTful API for Q&A App supporting user authentication, question/answer management, moderation, analytics, notifications, and admin actions.",
    ),
    public=True,
    permission_classes=(permissions.AllowAny,),
